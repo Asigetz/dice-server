@@ -1,0 +1,13 @@
+{
+  "name": "dice-server",
+  "version": "0.0.1",
+  "description": "Dice server, returns a number from 1-6",
+  "main": "server.js",
+  "repository": "https://github.com/bookmd/dice-server",
+  "author": "matanlb",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "lodash": "^4.17.4"
+  }
+}
