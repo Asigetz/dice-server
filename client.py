@@ -1,10 +1,13 @@
-import socket
-import json
+import httplib, urllib
 
-data = {'app': 'asaf','throw': 1}
-clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-clientSocket.connect(('localhost', 8875))
-clientSocket.sendall(json.dumps(data))
-respond = clientSocket.recv(1024)
+params = urllib.urlencode({'app': 'asaf', 'throw': 1})
+headers = {"Content-type": "application/json", "Accept": "application/json"}
+conn = httplib.HTTPConnection('localhost', 8875)
+conn.request("POST", "/cgi-bin/query", params, headers)
+response = conn.getresponse()
+print response.status, response.reason
 
-print('Received', repr(respond))
+doc = conn.getresponse().read()
+print doc
+data = response.read()
+conn.close()
