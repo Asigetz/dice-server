@@ -1,8 +1,9 @@
 import requests
 import threading
+import Queue
 
-results = []
 threads = []
+results = []
 
 
 def get_request(throw_number):
@@ -11,12 +12,13 @@ def get_request(throw_number):
     results.append(r.content)
 
 
-for i in range(3):
+for i in range(5):
     t = threading.Thread(target=get_request, args=(i,))
     threads.append(t)
     t.start()
+    t.join()
 
+print results
 
-print(results)
 
 
